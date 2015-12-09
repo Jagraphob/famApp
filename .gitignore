@@ -1,0 +1,16 @@
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+*/build/
+!/build/ #Except for build scripts in root
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Bower packages
+bower_components/
+
+# npm packages
+node_modules/
