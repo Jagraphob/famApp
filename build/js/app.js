@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("famApp",["ui.bootstrap","ui.router"]).run(["$rootScope","$state","$stateParams",function(t,a,e){t.$state=a,t.$stateParams=e,t.$on("$stateChangeError",function(t,a,e,o,r,n){t.preventDefault()})}])}(),function(){"use strict";function t(){var t=this;t.test="hello"}angular.module("famApp").controller("mainCtrl",["$scope",t])}();
