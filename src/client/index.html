@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/app.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="/src/client/app/.tmp/site.css">
+    <link rel="stylesheet" href="/src/client/app/styles/site.css">
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:js js/lib.js -->
@@ -28,15 +30,35 @@
     <!-- build:js js/app.js -->
     <!-- inject:js -->
     <script src="/src/client/app/app.js"></script>
+    <script src="/src/client/app/components/shoppinglist/shoppinglist.controller.js"></script>
     <script src="/src/client/app/components/main/main.controller.js"></script>
+    <script src="/src/client/app/components/home/home.controller.js"></script>
+    <script src="/src/client/app/routes.js"></script>
     <!-- endinject -->
     <!-- inject:templates:js -->
     <!-- endinject -->
     <!-- endbuild -->
 </head>
 
-    <body ng-controller="mainCtrl as vm">
+<body ng-controller="mainCtrl as vm">
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <a class="navbar-brand">Our Family App</a>
+            <button type="button" class="btn btn-default navbar-btn navbtn pull-right" ng-click="vm.isCollapsed = !vm.isCollapsed"><i class="fa fa-bars"></i></button>
+        </nav>
+        <div uib-collapse="vm.isCollapsed">
+            <div class="menubar" ui-sref="home" ng-click="vm.isCollapsed = !vm.isCollapsed">
+                <p>Home</p>
+            </div>
+            <div class="menubar" ui-sref="shoppingList" ng-click="vm.isCollapsed = !vm.isCollapsed">
+                <p>Shopping List</p>
+            </div>           
+        </div>
 
-    <p>{{vm.test}}</p>
+        <div ui-view></div>
+
+    </div>
+
 </body>
+
 </html>

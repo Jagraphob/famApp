@@ -3,7 +3,7 @@ module.exports = {
     src: {
         js: './src/client/app/**/*.js',
         sass: './src/client/app/styles/*.scss',
-        styles: './src/client/app/.tmp/*.css',
+        styles: './src/client/app/styles/*.css',
         fonts: [
             './bower_components/font-awesome/fonts/*.*'
         ],

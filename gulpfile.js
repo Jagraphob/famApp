@@ -52,7 +52,7 @@ gulp.task('inject-lib', function(){
     
 });
 
-gulp.task('inject-assets', ['compile-styles', 'clean-assets'],function(){
+gulp.task('inject-assets', [ 'clean-assets'],function(){
     
    return gulp
         .src(config.index)

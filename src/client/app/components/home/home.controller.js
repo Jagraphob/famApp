@@ -2,12 +2,14 @@
     'use strict';
     
     angular.module('famApp')
-        .controller('mainCtrl', ['$scope', mainCtrl]);
+        .controller('homeCtrl', ['$scope', homeCtrl]);
     
-    function mainCtrl () {
+    function homeCtrl () {
         var vm = this;
         
-        vm.isCollapsed = true;       
+
+        vm.test = 'hello';
+        
 
         
     }
