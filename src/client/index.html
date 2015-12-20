@@ -20,19 +20,22 @@
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js js/app.js -->
     <!-- inject:js -->
     <script src="/src/client/app/app.js"></script>
     <script src="/src/client/app/components/shoppinglist/shoppinglist.controller.js"></script>
+    <script src="/src/client/app/components/shoppinglist/newItem.modal.controller.js"></script>
     <script src="/src/client/app/components/main/main.controller.js"></script>
     <script src="/src/client/app/components/home/home.controller.js"></script>
+    <script src="/src/client/app/services/shoppingList.services.js"></script>
     <script src="/src/client/app/routes.js"></script>
     <!-- endinject -->
     <!-- inject:templates:js -->
@@ -43,22 +46,19 @@
 <body ng-controller="mainCtrl as vm">
     <div class="container">
         <nav class="navbar navbar-inverse">
-            <a class="navbar-brand">Our Family App</a>
+            <a class="navbar-brand">{{$state.current.data.pageTitle}}</a>
             <button type="button" class="btn btn-default navbar-btn navbtn pull-right" ng-click="vm.isCollapsed = !vm.isCollapsed"><i class="fa fa-bars"></i></button>
         </nav>
         <div uib-collapse="vm.isCollapsed">
-            <div class="menubar" ui-sref="home" ng-click="vm.isCollapsed = !vm.isCollapsed">
-                <p>Home</p>
-            </div>
             <div class="menubar" ui-sref="shoppingList" ng-click="vm.isCollapsed = !vm.isCollapsed">
                 <p>Shopping List</p>
-            </div>           
+            </div>
         </div>
 
         <div ui-view></div>
-
+        
     </div>
-
+    
 </body>
 
 </html>
