@@ -8,7 +8,8 @@
         
         return {
             getItems: getItems,
-            newItem: newItem
+            newItem: newItem,
+            removeItem: removeItem
         };
         
         function getItems () {
@@ -16,7 +17,11 @@
         }
         
         function newItem (item) {
-            return $http.post(REST_URL + 'newshoppingitem', item);
+            return $http.post(REST_URL + 'shoppinglist/new', item);
+        }
+        
+        function removeItem (id) {
+            return $http.delete(REST_URL + 'shoppinglist/delete/' + id);
         }
     }
     

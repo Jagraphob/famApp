@@ -12,13 +12,14 @@
                 <td>{{item.amount}}</td>
                 <td>{{item.unit}}</td>
                 <td>
-                    <button class="btn btn-danger btn-xs pull-right" ng-click="vm.remove($index)"><i class="fa fa-remove"></i></button>
+                    <button class="btn btn-danger btn-xs pull-right" ng-click="vm.remove($index); $event.stopPropagation();"><i class="fa fa-remove"></i></button>
                 </td>
             </tr>
             <tr class="table-row-collapse" ng-repeat-end="" uib-collapse="!item.isCollapsed">
                 <td colspan="3">
                     <p>Type    : {{item.type}}</p>
                     <p>Remark  : {{item.remark}}</p>
+                    <p>Date    : {{item.createdOn | date : "mediumDate"}}</p>
                 </td>
                 <td>
                     <button class="btn btn-warning btn-xs pull-right" ng-click="vm.edit($index)"><i class="fa fa-pencil"></i></button>

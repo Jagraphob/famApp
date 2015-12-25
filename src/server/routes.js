@@ -4,7 +4,8 @@ var shoppingListCtrl = require('./controllers/ShoppingList.controller');
 
 
 router.get('/shoppinglist', getShoppingList);
-router.post('/newshoppingitem', postShoppingItem);
+router.post('/shoppinglist/new', postShoppingItem);
+router.delete('/shoppinglist/delete/:id', deleteShoppingItem);
 
 
 module.exports = router;
@@ -18,3 +19,6 @@ function postShoppingItem(req, res) {
     return shoppingListCtrl.create(req, res);
 }
 
+function deleteShoppingItem(req, res) {
+    return shoppingListCtrl.delete(req, res);
+}

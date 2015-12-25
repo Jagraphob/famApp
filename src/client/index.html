@@ -53,13 +53,18 @@
 
 <body ng-controller="mainCtrl as vm">
     <div class="container">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar">
             <a class="navbar-brand">{{$state.current.data.pageTitle}}</a>
             <button type="button" class="btn btn-default navbar-btn navbtn pull-right" ng-click="vm.isCollapsed = !vm.isCollapsed"><i class="fa fa-bars"></i></button>
         </nav>
         <div uib-collapse="vm.isCollapsed">
             <div class="menubar" ui-sref="shoppingList" ng-click="vm.isCollapsed = !vm.isCollapsed">
                 <p>Shopping List</p>
+            </div>
+        </div>
+        <div uib-collapse="vm.isCollapsed">
+            <div class="menubar" ui-sref="shoppingList" ng-click="vm.isCollapsed = !vm.isCollapsed">
+                <p>Price List</p>
             </div>
         </div>
 

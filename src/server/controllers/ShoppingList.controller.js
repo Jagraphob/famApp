@@ -19,9 +19,18 @@ exports.create = function(req, res) {
     });
     
     entry.save(function (err,post){
-        if(err) { console.log(err)}
-        res.json(201, post)
+        if(err)
+            console.log(err);
+        res.json(201, post);
     });	
     
 };
 
+exports.delete = function(req, res) {
+  
+    ShoppingList.findById(req.params.id, function(err,docs){
+        if(err)
+            return console.log(err);                
+    }).remove().exec();
+    res.sendStatus(200);    
+};
