@@ -1,20 +1,27 @@
 var ShoppingList = require('../models/ShoppingList.model.js');
 
+//  api/shoppinglist
 exports.get = function(req, res) {
     ShoppingList.find(function(err, list){        
         res.send(list);
     });
-}
+};
 
+//  api/newshoppingitem
 exports.create = function(req, res) {
+    
     var entry = new ShoppingList({
         item: req.body.item,
+        type: req.body.type,        
         amount: req.body.amount,
-        type: req.body.type,
-        bought: req.body.bought,
+        unit: req.body.unit,
+        remark: req.body.remark
     });
-
-    entry.save();	
-    res.sendStatus(200);
+    
+    entry.save(function (err,post){
+        if(err) { console.log(err)}
+        res.json(201, post)
+    });	
+    
 };
 

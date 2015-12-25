@@ -14,9 +14,17 @@ var environment     = process.env.NODE_ENV;
 var four04          = require('./util/404')();
 
 
-mongoose.connect(config.db.url)
+mongoose.connect(config.db.url, function(err) {
+  if(err) {
+    console.log('connection error', err);
+  }
+  else {
+    console.log('connection with database successful');
+  }
+});
 
-app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 

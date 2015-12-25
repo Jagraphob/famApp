@@ -21,9 +21,8 @@ gulp.task('serve-dev', function(){
             'NODE_ENV': 'dev'
         },
         watch: './src/server/'
-    })
-        .on('start', function(){});
-    
+    });
+            
 });
 
 gulp.task('build', ['inject-lib', 'inject-assets', 'build-fonts', 'build-images'], function() {

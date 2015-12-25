@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 var shoppingListSchema = new Schema({
     item: String,
+    type: String,    
     amount: Number,	
-    type: String,
-    bought: Boolean,
+    unit: String,
+    remark: String,
     createdOn: { type: Date, default: Date.now }
 });
 

@@ -2,51 +2,30 @@
     'use strict';
 
     angular.module('famApp')
-        .controller('shoppingListCtrl', ['$scope', '$uibModal', shoppingListCtrl]);
+        .controller('shoppingListCtrl', ['$scope', '$state','$uibModal' ,'shoppingListService', shoppingListCtrl]);
 
-    function shoppingListCtrl($scope, $uibModal) {
+    function shoppingListCtrl($scope, $state, $uibModal, shoppingListService) {
         var vm = this;
-
-        vm.data = [
-            {
-                "type": "Food",
-                "item": "Milk",
-                "amount": 1,
-                "unit": "ea",
-                "remark": ""
-                   },
-            {
-                "type": "Food",
-                "item": "Eggs",
-                "amount": 1,
-                "unit": "pack",
-                "remark": "12 per pack"
-                   },
-            {
-                "type": "Food",
-                "item": "Bacon",
-                "amount": 500,
-                "unit": "mg",
-                "remark": ""
-                   },
-            {
-                type: "Hardware",
-                item: "Sofa",
-                amount: 1,
-                "unit": "ea"
-                }
-            
-        ];
 
         vm.add = add;
         vm.remove = remove;
 
+        shoppingListService.getItems().then(function(res){
+            vm.data = res.data;
+        }, function(err){
+            console.log(err);
+        })
+                        
         function add () {
             var modalInstance = $uibModal.open({
                 templateUrl: 'src/client/app/components/shoppinglist/newItem.html',
                 controller: 'newItemModalCtrl',
                 controllerAs: 'vm'
-            });                        
+            }); 
+            
+            modalInstance.result.then(function(){
+                $state.go('shoppingList', {}, {reload: true});                 
+            });
         }
         
         function remove (index) {

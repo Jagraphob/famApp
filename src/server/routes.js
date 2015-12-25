@@ -10,11 +10,11 @@ router.post('/newshoppingitem', postShoppingItem);
 module.exports = router;
 
 /////////////////////////////////////////////////////////////////////////
+function getShoppingList(req, res) {
+    return shoppingListCtrl.get(req, res);
+}
 
-function postShoppingItem(req, res, next) {
+function postShoppingItem(req, res) {
     return shoppingListCtrl.create(req, res);
 }
 
-function getShoppingList(req, res, next) {
-    return shoppingListCtrl.get(req, res);
-}
