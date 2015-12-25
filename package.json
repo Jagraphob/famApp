@@ -8,7 +8,8 @@
   "main": "src/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+      "start" : "node app.js"
   },
   "author": "",
   "license": "ISC",
