@@ -38,6 +38,12 @@ gulp.task('build', ['inject-lib', 'inject-assets', 'build-fonts', 'build-images'
 
 //////////////// ** Sub tasks ** /////////////////
 
+gulp.task('build-html', function(){
+    return gulp
+        .src(config.src.html)
+        .pipe(gulp.dest(config.dest.build));
+});
+
 gulp.task('inject-lib', function(){
    
     return gulp

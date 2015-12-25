@@ -1,6 +1,7 @@
 module.exports = {
     
     src: {
+        html: './src/client/app/**/*.html',
         js: './src/client/app/**/*.js',
         sass: './src/client/app/styles/*.scss',
         styles: './src/client/app/styles/*.css',
