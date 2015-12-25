@@ -35,8 +35,8 @@ console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
 
 switch(environment) {
-    case 'build':
-        console.log('** BUILD **');
+    case 'production':
+        console.log('** Production **');
         app.use(express.static('./build/'));
         
         app.use('/app/*', function(req, res, next) {
