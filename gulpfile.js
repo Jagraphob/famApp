@@ -25,6 +25,19 @@ gulp.task('serve-dev', function(){
             
 });
 
+gulp.task('serve-prod', function(){
+
+    $.nodemon({
+        script: './src/server/app.js',
+        delayTime: 1,
+        env : {
+            'PORT': 3000,
+            'NODE_ENV': 'production'
+        }
+    });
+
+});
+
 gulp.task('build', ['inject-lib', 'inject-assets', 'build-fonts', 'build-images'], function() {
     return gulp
         .src(config.index)
