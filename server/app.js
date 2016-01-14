@@ -49,7 +49,7 @@ switch(environment) {
         break;
     default:
         console.log('** DEV **');
-        app.use(express.static('./src/client'));
+        app.use(express.static('./app'));
         app.use(express.static('./'));
         app.use(express.static('./tmp'));
         
@@ -57,7 +57,7 @@ switch(environment) {
             four04.send404(req, res);
         });
         app.use('/', function(req, res, next){
-            res.render('../client/index.html');
+            res.render('../app/index.html');
         });
         break;
 }

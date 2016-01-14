@@ -14,7 +14,7 @@
 
         function add() {
             var modalInstance = $uibModal.open({
-                templateUrl: 'src/client/app/components/shoppinglist/newItem.html',
+                templateUrl: 'app/components/shoppinglist/newItem.html',
                 controller: 'newItemModalCtrl',
                 controllerAs: 'vm'
             });
