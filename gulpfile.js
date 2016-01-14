@@ -38,9 +38,9 @@ gulp.task('serve-prod', function(){
 
 });
 
-gulp.task('build', ['inject-lib', 'inject-assets', 'build-fonts', 'build-images'], function() {
+gulp.task('build', ['build-inject-lib', 'build-inject-assets'], function() {
     return gulp
-        .src(config.index)
+        .src(config.prodIndex)
         .pipe($.debug())
         .pipe($.plumber())
         .pipe($.useref({ searchPath: './' }))
@@ -48,39 +48,72 @@ gulp.task('build', ['inject-lib', 'inject-assets', 'build-fonts', 'build-images'
         .pipe($.if('*.css', $.minifyCss()))
         .pipe(gulp.dest(config.dest.build));
 });
+//////////////////////// Prod Build tasks /////////////////////////////////
 
-//////////////// ** Sub tasks ** /////////////////
+gulp.task('build-inject-assets', ['build-inject-lib', 'dev-inject-assets'], function(){
 
-gulp.task('build-html', function(){
     return gulp
-        .src(config.src.html)
-        .pipe(gulp.dest(config.dest.build));
+        .src(config.prodIndex)
+        .pipe($.debug())
+        .pipe($.plumber())
+        .pipe($.inject(gulp.src([
+            config.src.js, 
+            config.src.excludeDevConfig])
+                       .pipe($.angularFilesort())))
+        .pipe($.inject(gulp.src(config.src.styles)))
+        .pipe(gulp.dest(config.dest.tmp))
+
 });
 
-gulp.task('inject-lib', function(){
-   
+gulp.task('build-inject-lib',['build-htmlTemplates', 'build-fonts', 'build-images'], function(){
+    
     return gulp
-        .src(config.index)
+        .src(config.devIndex)
         .pipe($.debug())
         .pipe($.plumber())
         .pipe(wiredep({
             ignorePath: '../..'
         }))
-        .pipe(gulp.dest(config.dest.client));
-    
+        .pipe(gulp.dest(config.dest.tmp)); 
 });
 
-gulp.task('inject-assets', [ 'clean-assets'],function(){
-    
-   return gulp
-        .src(config.index)
+gulp.task('build-htmlTemplates', ['clean-build'], function(){
+    return gulp
+        .src(config.src.html)
+        .pipe(gulp.dest(config.dest.htmlTemplates));
+});
+
+//////////////// Dev Build tasks /////////////////
+
+
+gulp.task('dev-inject-assets', ['compile-styles'],function(){
+
+    return gulp
+        .src(config.devIndex)
         .pipe($.debug())
         .pipe($.plumber())
-        .pipe($.inject(gulp.src(config.src.js).pipe($.angularFilesort())))
+        .pipe($.inject(gulp.src([
+            config.src.js, 
+            config.src.excludeProdconfig])
+            .pipe($.angularFilesort())))
         .pipe($.inject(gulp.src(config.src.styles)))
-        .pipe(gulp.dest(config.appRoot))
-        
+        .pipe(gulp.dest(config.dest.client))
+
 });
+
+gulp.task('dev-inject-lib', function(){
+   
+    return gulp
+        .src(config.devIndex)
+        .pipe($.debug())
+        .pipe($.plumber())
+        .pipe(wiredep({
+            ignorePath: '../..'
+        }))
+        .pipe(gulp.dest(config.dest.client));    
+});
+
+/////////////////////// components tasks //////////////////////
 
 gulp.task('compile-styles', ['clean-styles'],function(){
     
@@ -109,14 +142,17 @@ gulp.task('build-images', ['clean-images'], function() {
 });
 //////////////// ** helper tasks ** /////////////////
 
-gulp.task('clean-assets', function() {
+gulp.task('clean-build', function() {
     var files = [].concat(
-        config.dest.build + '*.html',
-        config.dest.build + 'js/**/*.js'
+        config.dest.build + '*',
+        config.dest.tmp + '/*.html'
     );    
     del(files);
 });
 
+gulp.task('clean-htmltemplates', function(){
+    del(config.dest.build + 'client/app/**/*.html');
+});
 
 gulp.task('clean-styles', function(){    
     del(config.dest.styles + '**/*.css');
