@@ -4,7 +4,7 @@ module.exports = {
         sass:       './app/styles/*.scss',
         images:     './app/images/**.*',
         fonts: [
-                    './bower_components/fontawesome/fonts/*.*',
+                    './bower_components/font-awesome/fonts/*.*',
                     './bower_components/bootstrap/dist/fonts/*.*'
         ],
         templates:  './app/**/*.html',
