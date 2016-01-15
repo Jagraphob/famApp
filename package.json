@@ -2,7 +2,7 @@
   "name": "famapp",
   "version": "1.0.0",
   "engines": {
-    "node": "5.2.0"
+    "node": "5.4.0"
   },
   "description": "My family application",
   "main": "src/server/app.js",
