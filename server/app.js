@@ -38,13 +38,13 @@ switch(environment) {
     case 'production':
         console.log('** Production **');
         app.use(express.static('./build/'));
-        
+
         app.use('/app/*', function(req, res, next) {
             four04.send404(req, res);
         });
-        
+
         app.use('/', function(req, res, next){
-            res.render('../build/index.html')
+            res.render('index.html')
         });
         break;
     default:
@@ -52,7 +52,7 @@ switch(environment) {
         app.use(express.static('./app'));
         app.use(express.static('./'));
         app.use(express.static('./tmp'));
-        
+
         app.use('/app/*', function(req, res, next){
             four04.send404(req, res);
         });
